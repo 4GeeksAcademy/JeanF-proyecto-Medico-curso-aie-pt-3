@@ -28,6 +28,31 @@ This repository is the **starter template** for transversal projects. You will w
 5. **Start implementing** in the right folder — do not dump everything in the root.
 6. **Document** what you add: each new app, service, agent, or pipeline gets a subfolder + README.
 
+## Run a local preview (Codespaces-friendly)
+
+For static UI deliverables (for example `index.html` and `application.html`), run a local server with `npx`:
+
+```bash
+npx --yes http-server . -p 8000 -c-1
+```
+
+Then open:
+
+- `http://localhost:8000/index.html`
+- `http://localhost:8000/application.html`
+
+In GitHub Codespaces, open the **Ports** panel and make port `8000` public if you need to test with external tools.
+
+## Performance check (PageSpeed/Lighthouse)
+
+Minimum target: performance score `>= 80` (ideal `>= 90`).
+
+1. Expose port `8000` as **Public** in Codespaces.
+2. Copy the public URL (for example `https://<your-codespace>-8000.app.github.dev/index.html`).
+3. Run PageSpeed Insights against that URL.
+4. If PageSpeed cannot reach your preview, run Lighthouse from Chrome DevTools against the same page URL.
+5. Save evidence (screenshot/report) for both `index.html` and `application.html`.
+
 ---
 
 ## How to think about this monorepo

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplicación | HealthCore Digital</title>
+    <meta
+      name="description"
+      content="Formulario de aplicación a HealthCore Digital para profesionales interesados en construir soluciones de IA y datos para una red sanitaria internacional."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://healthcore.example.com/application" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Space Grotesk', 'sans-serif'],
+              body: ['Source Sans 3', 'sans-serif']
+            },
+            colors: {
+              core: {
+                50: '#eefbfb',
+                100: '#d4f2f3',
+                200: '#a9e6e7',
+                300: '#71d4d7',
+                400: '#39bdc3',
+                500: '#2199a2',
+                600: '#1b7b84',
+                700: '#1b636b',
+                800: '#1c5258',
+                900: '#1b454a'
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": "AI Engineering Candidate Pool",
+        "description": "Aplicación general para perfiles de ingeniería, datos e IA en HealthCore Digital.",
+        "hiringOrganization": {
+          "@type": "MedicalOrganization",
+          "name": "HealthCore"
+        },
+        "employmentType": "FULL_TIME",
+        "jobLocationType": "HYBRID",
+        "applicantLocationRequirements": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Kingdom" }
+        ]
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-slate-950 font-body text-slate-100 antialiased">
+    <a
+      href="#contenido-principal"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-slate-950"
+      >Saltar al contenido principal</a
+    >
+
+    <header class="border-b border-white/10 bg-slate-950/95 backdrop-blur" role="banner">
+      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 lg:px-8" aria-label="Navegación principal">
+        <a href="index.html" class="font-display text-xl font-bold tracking-tight text-white">HealthCore Digital</a>
+        <a
+          href="index.html"
+          class="rounded-full border border-slate-500 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-core-300 hover:text-core-200"
+          >Volver al inicio</a
+        >
+      </nav>
+    </header>
+
+    <main id="contenido-principal" class="mx-auto max-w-5xl px-6 py-12 lg:px-8">
+      <section aria-labelledby="form-title" class="mb-10">
+        <p class="inline-flex rounded-full border border-core-300/40 bg-core-300/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-core-100">
+          Formulario de aplicación
+        </p>
+        <h1 id="form-title" class="mt-4 font-display text-4xl font-bold text-white">Únete a la modernización de HealthCore</h1>
+        <p class="mt-4 max-w-3xl text-lg text-slate-300">
+          Este registro nos permite evaluar tu encaje con los retos reales de HealthCore Digital: integración clínica, IA aplicada, compliance y excelencia operativa en salud.
+        </p>
+      </section>
+
+      <section class="rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-core-900/20 sm:p-8" aria-labelledby="application-form-title">
+        <h2 id="application-form-title" class="font-display text-2xl font-semibold text-white">Datos del candidato</h2>
+        <p class="mt-2 text-sm text-slate-400">Todos los campos son obligatorios, salvo donde se indique lo contrario.</p>
+
+        <div id="form-alert" class="mt-6 hidden rounded-xl border px-4 py-3 text-sm" role="status" aria-live="polite"></div>
+
+        <form id="application-form" class="mt-6 space-y-10" novalidate>
+          <fieldset class="space-y-6">
+            <legend class="font-display text-xl font-semibold text-core-100">1) Información personal</legend>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label for="fullName" class="mb-2 block font-semibold text-slate-100">Nombre completo</label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  autocomplete="name"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="fullName-error"
+                  required
+                />
+                <p id="fullName-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="email" class="mb-2 block font-semibold text-slate-100">Correo electrónico</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="email-error"
+                  required
+                />
+                <p id="email-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="phone" class="mb-2 block font-semibold text-slate-100">Teléfono (con prefijo país)</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="+1 555 123 4567"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="phone-error"
+                  required
+                />
+                <p id="phone-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="country" class="mb-2 block font-semibold text-slate-100">País de residencia</label>
+                <select
+                  id="country"
+                  name="country"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="country-error"
+                  required
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="US">Estados Unidos</option>
+                  <option value="UK">Reino Unido</option>
+                  <option value="Other">Otro</option>
+                </select>
+                <p id="country-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="space-y-6">
+            <legend class="font-display text-xl font-semibold text-core-100">2) Encaje con HealthCore Digital</legend>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label for="department" class="mb-2 block font-semibold text-slate-100">Área de interés principal</label>
+                <select
+                  id="department"
+                  name="department"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="department-error"
+                  required
+                >
+                  <option value="">Selecciona un área</option>
+                  <option value="Clinical Operations">Clinical Operations</option>
+                  <option value="Patient Experience and Access">Patient Experience and Access</option>
+                  <option value="Revenue Cycle and Billing">Revenue Cycle and Billing</option>
+                  <option value="Compliance and Data Governance">Compliance and Data Governance</option>
+                  <option value="People and Workforce">People and Workforce</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Executive Leadership Analytics">Executive Leadership Analytics</option>
+                </select>
+                <p id="department-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="role" class="mb-2 block font-semibold text-slate-100">Rol objetivo</label>
+                <input
+                  id="role"
+                  name="role"
+                  type="text"
+                  placeholder="Ej: Data Engineer, ML Engineer, Product Analyst"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="role-error"
+                  required
+                />
+                <p id="role-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="experience" class="mb-2 block font-semibold text-slate-100">Años de experiencia profesional</label>
+                <input
+                  id="experience"
+                  name="experience"
+                  type="number"
+                  min="0"
+                  max="50"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="experience-error"
+                  required
+                />
+                <p id="experience-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="availability" class="mb-2 block font-semibold text-slate-100">Disponibilidad de inicio</label>
+                <select
+                  id="availability"
+                  name="availability"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="availability-error"
+                  required
+                >
+                  <option value="">Selecciona disponibilidad</option>
+                  <option value="Immediate">Inmediata</option>
+                  <option value="2 weeks">En 2 semanas</option>
+                  <option value="1 month">En 1 mes</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
+                <p id="availability-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div>
+              <label for="challenge" class="mb-2 block font-semibold text-slate-100">¿Qué reto de HealthCore te interesa resolver y cómo lo abordarías?</label>
+              <textarea
+                id="challenge"
+                name="challenge"
+                rows="5"
+                placeholder="Describe tu enfoque para problemas como no-show prediction, integración de EHR, denegaciones de claims o compliance multi-jurisdicción."
+                class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                aria-describedby="challenge-help challenge-error"
+                required
+              ></textarea>
+              <p id="challenge-help" class="mt-2 text-sm text-slate-400">Mínimo 120 caracteres.</p>
+              <p id="challenge-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+            </div>
+
+            <div>
+              <label for="skills" class="mb-2 block font-semibold text-slate-100">Stack técnico principal</label>
+              <input
+                id="skills"
+                name="skills"
+                type="text"
+                placeholder="Ej: Python, SQL, FastAPI, Airflow, AWS, NLP"
+                class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                aria-describedby="skills-error"
+                required
+              />
+              <p id="skills-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label for="linkedin" class="mb-2 block font-semibold text-slate-100">LinkedIn o portafolio (URL)</label>
+                <input
+                  id="linkedin"
+                  name="linkedin"
+                  type="url"
+                  placeholder="https://"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="linkedin-error"
+                  required
+                />
+                <p id="linkedin-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+
+              <div>
+                <label for="workAuth" class="mb-2 block font-semibold text-slate-100">Autorización para trabajar en EE. UU./Reino Unido</label>
+                <select
+                  id="workAuth"
+                  name="workAuth"
+                  class="w-full rounded-xl border border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 focus:border-core-300 focus:outline-none focus:ring-2 focus:ring-core-300/40"
+                  aria-describedby="workAuth-error"
+                  required
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="US">Solo EE. UU.</option>
+                  <option value="UK">Solo Reino Unido</option>
+                  <option value="Both">Ambos</option>
+                  <option value="Need sponsorship">Requiero sponsorship</option>
+                </select>
+                <p id="workAuth-error" class="mt-2 min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="space-y-4">
+            <legend class="font-display text-xl font-semibold text-core-100">3) Consentimiento</legend>
+
+            <label class="flex items-start gap-3 rounded-xl border border-slate-700 bg-slate-950/70 p-4">
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                class="mt-1 h-4 w-4 rounded border-slate-400 text-core-500 focus:ring-core-300"
+                aria-describedby="consent-error"
+                required
+              />
+              <span class="text-sm text-slate-200">
+                Confirmo que la información proporcionada es veraz y autorizo su uso para evaluar mi aplicación en procesos de selección de HealthCore Digital.
+              </span>
+            </label>
+            <p id="consent-error" class="min-h-[1.25rem] text-sm text-rose-300" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <button
+              type="submit"
+              class="rounded-full bg-core-400 px-7 py-3 text-base font-bold text-slate-950 transition hover:bg-core-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-core-200"
+            >
+              Enviar aplicación
+            </button>
+            <button
+              id="clear-form"
+              type="button"
+              class="rounded-full border border-slate-500 px-7 py-3 text-base font-semibold text-slate-200 transition hover:border-core-300 hover:text-core-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-core-200"
+            >
+              Limpiar formulario
+            </button>
+            <p class="text-sm text-slate-400">No se enviará a servidor aún. Validación solo en cliente.</p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-slate-950" role="contentinfo">
+      <div class="mx-auto max-w-5xl px-6 py-8 text-sm text-slate-400 lg:px-8">
+        © 2026 HealthCore Digital · Talent & AI Engineering
+      </div>
+    </footer>
+
+    <script src="validation.js" defer></script>
+  </body>
+</html>
