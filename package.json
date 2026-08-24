@@ -1,0 +1,12 @@
+{
+  "name": "healthcore-data-module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TypeScript data processing module for HealthCore",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
