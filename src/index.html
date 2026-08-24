@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modulo de Datos HealthCore - Laboratorio Visual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#121826",
+              mist: "#eef3ff",
+              mint: "#8cf6d1",
+              coral: "#ff8a7a",
+              steel: "#6f7d95",
+            },
+            boxShadow: {
+              soft: "0 20px 45px -24px rgba(18, 24, 38, 0.45)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --panel: rgba(255, 255, 255, 0.86);
+      }
+
+      body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .hero-glow {
+        background: radial-gradient(circle at 20% 20%, #d3f8ff 0%, transparent 45%),
+          radial-gradient(circle at 80% 0%, #ffd7d0 0%, transparent 40%),
+          radial-gradient(circle at 50% 100%, #dbffe7 0%, transparent 35%),
+          linear-gradient(160deg, #f2f7ff 0%, #ffffff 50%, #eef6ff 100%);
+      }
+
+      .glass {
+        background: var(--panel);
+        backdrop-filter: blur(8px);
+      }
+
+      .fade-up {
+        animation: fadeUp 0.5s ease both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="hero-glow min-h-screen text-ink">
+    <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <header class="glass fade-up mb-8 rounded-3xl border border-white/60 p-6 shadow-soft sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="inline-flex items-center rounded-full bg-ink px-3 py-1 text-xs font-semibold tracking-wide text-white">
+              HEALTHCORE DIGITAL LAB
+            </p>
+            <h1 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl">Modulo de Procesamiento de Datos</h1>
+            <p class="mt-3 max-w-2xl text-sm text-steel sm:text-base">
+              Prueba filtros, ordenamientos, busquedas y reportes con una visualizacion mas clara para entender resultados al instante.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-ink px-4 py-3 text-right text-white shadow-soft">
+            <p class="text-xs uppercase tracking-wide text-mint">Estado</p>
+            <p class="text-sm font-semibold">Demo interactiva en vivo</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <button
+          id="filterBtn"
+          class="fade-up rounded-2xl border border-emerald-100 bg-white/90 px-4 py-4 text-left shadow-soft transition duration-300 hover:-translate-y-1 hover:border-emerald-300"
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600">Filtro</p>
+          <p class="mt-2 text-sm font-semibold">Filtrar Citas de UK</p>
+          <p class="mt-1 text-xs text-steel">Muestra citas por pais</p>
+        </button>
+        <button
+          id="sortBtn"
+          class="fade-up rounded-2xl border border-sky-100 bg-white/90 px-4 py-4 text-left shadow-soft transition duration-300 hover:-translate-y-1 hover:border-sky-300"
+          style="animation-delay: 0.05s"
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide text-sky-600">Orden</p>
+          <p class="mt-2 text-sm font-semibold">Claims por monto DESC</p>
+          <p class="mt-1 text-xs text-steel">Ordena montos de mayor a menor</p>
+        </button>
+        <button
+          id="searchBtn"
+          class="fade-up rounded-2xl border border-amber-100 bg-white/90 px-4 py-4 text-left shadow-soft transition duration-300 hover:-translate-y-1 hover:border-amber-300"
+          style="animation-delay: 0.1s"
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide text-amber-600">Busqueda</p>
+          <p class="mt-2 text-sm font-semibold">Binaria monto 210</p>
+          <p class="mt-1 text-xs text-steel">Encuentra indice en lista ordenada</p>
+        </button>
+        <button
+          id="reportBtn"
+          class="fade-up rounded-2xl border border-rose-100 bg-white/90 px-4 py-4 text-left shadow-soft transition duration-300 hover:-translate-y-1 hover:border-rose-300"
+          style="animation-delay: 0.15s"
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide text-rose-600">Reporte</p>
+          <p class="mt-2 text-sm font-semibold">No-show y riesgo</p>
+          <p class="mt-1 text-xs text-steel">Calcula tasa y promedio</p>
+        </button>
+      </section>
+
+      <section class="glass mt-8 rounded-3xl border border-white/60 p-5 shadow-soft sm:p-6">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-semibold sm:text-xl">Resultado</h2>
+            <p id="resultSubtitle" class="text-xs text-steel sm:text-sm">Selecciona una operacion para generar salida.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="resultTag" class="rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white">LISTO</span>
+            <span id="resultTime" class="rounded-full bg-white px-3 py-1 text-xs text-steel">--:--:--</span>
+          </div>
+        </div>
+
+        <div id="metrics" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+
+        <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr id="tableHeader"></tr>
+              </thead>
+              <tbody id="tableBody" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+          <p id="tableEmpty" class="px-4 py-6 text-center text-sm text-steel">No hay tabla para mostrar en esta operacion.</p>
+        </div>
+
+        <div class="mt-4 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900">
+          <div class="border-b border-slate-700 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-300">JSON tecnico</div>
+          <pre id="output" class="max-h-80 overflow-auto p-4 text-xs text-slate-100 sm:text-sm"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const appointments = [
+        { appointmentId: "A-01", country: "US", attended: true, noShowRiskScore: 0.1 },
+        { appointmentId: "A-02", country: "UK", attended: false, noShowRiskScore: 0.8 },
+        { appointmentId: "A-03", country: "UK", attended: true, noShowRiskScore: 0.4 },
+      ];
+
+      const claims = [
+        { claimId: "C-01", amountUsd: 150 },
+        { claimId: "C-02", amountUsd: 210 },
+        { claimId: "C-03", amountUsd: 95 },
+      ];
+
+      const output = document.getElementById("output");
+      const metrics = document.getElementById("metrics");
+      const tableHeader = document.getElementById("tableHeader");
+      const tableBody = document.getElementById("tableBody");
+      const tableEmpty = document.getElementById("tableEmpty");
+      const resultTag = document.getElementById("resultTag");
+      const resultTime = document.getElementById("resultTime");
+      const resultSubtitle = document.getElementById("resultSubtitle");
+
+      const escapeHtml = (value) =>
+        String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+
+      const createMetricCard = (label, value) => `
+        <article class="fade-up rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p class="text-xs uppercase tracking-wide text-steel">${escapeHtml(label)}</p>
+          <p class="mt-2 text-xl font-bold">${escapeHtml(value)}</p>
+        </article>
+      `;
+
+      const renderTable = (rows) => {
+        if (!rows || rows.length === 0) {
+          tableHeader.innerHTML = "";
+          tableBody.innerHTML = "";
+          tableEmpty.classList.remove("hidden");
+          return;
+        }
+
+        const columns = Object.keys(rows[0]);
+        tableHeader.innerHTML = columns
+          .map(
+            (column) =>
+              `<th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">${escapeHtml(column)}</th>`,
+          )
+          .join("");
+
+        tableBody.innerHTML = rows
+          .map((row) => {
+            const cells = columns
+              .map((column) => `<td class="whitespace-nowrap px-4 py-3 text-slate-700">${escapeHtml(row[column])}</td>`)
+              .join("");
+            return `<tr class="hover:bg-slate-50">${cells}</tr>`;
+          })
+          .join("");
+
+        tableEmpty.classList.add("hidden");
+      };
+
+      const renderResult = ({ tag, subtitle, data, metricItems, tableRows }) => {
+        const now = new Date();
+        resultTag.textContent = tag;
+        resultSubtitle.textContent = subtitle;
+        resultTime.textContent = now.toLocaleTimeString("es-ES");
+
+        metrics.innerHTML = (metricItems || []).map((item) => createMetricCard(item.label, item.value)).join("");
+        renderTable(tableRows || []);
+        output.textContent = JSON.stringify(data, null, 2);
+      };
+
+      document.getElementById("filterBtn").addEventListener("click", () => {
+        const filtered = appointments.filter((item) => item.country === "UK");
+
+        renderResult({
+          tag: "FILTRO",
+          subtitle: "Citas del Reino Unido encontradas en la coleccion actual.",
+          data: filtered,
+          metricItems: [
+            { label: "Total UK", value: filtered.length },
+            { label: "Total general", value: appointments.length },
+            { label: "No-show UK", value: filtered.filter((item) => !item.attended).length },
+            {
+              label: "Riesgo promedio",
+              value: filtered.length ? (filtered.reduce((sum, item) => sum + item.noShowRiskScore, 0) / filtered.length).toFixed(2) : "0.00",
+            },
+          ],
+          tableRows: filtered,
+        });
+      });
+
+      document.getElementById("sortBtn").addEventListener("click", () => {
+        const sorted = [...claims].sort((a, b) => b.amountUsd - a.amountUsd);
+
+        renderResult({
+          tag: "ORDEN",
+          subtitle: "Claims ordenados por monto descendente.",
+          data: sorted,
+          metricItems: [
+            { label: "Mayor monto", value: `$${sorted[0]?.amountUsd ?? 0}` },
+            { label: "Menor monto", value: `$${sorted[sorted.length - 1]?.amountUsd ?? 0}` },
+            { label: "Suma total", value: `$${sorted.reduce((sum, claim) => sum + claim.amountUsd, 0)}` },
+            { label: "Promedio", value: `$${(sorted.reduce((sum, claim) => sum + claim.amountUsd, 0) / sorted.length).toFixed(2)}` },
+          ],
+          tableRows: sorted,
+        });
+      });
+
+      document.getElementById("searchBtn").addEventListener("click", () => {
+        const sorted = [...claims].sort((a, b) => a.amountUsd - b.amountUsd);
+        const target = 210;
+        let left = 0;
+        let right = sorted.length - 1;
+        let found = -1;
+
+        while (left <= right) {
+          const mid = Math.floor((left + right) / 2);
+
+          if (sorted[mid].amountUsd === target) {
+            found = mid;
+            break;
+          }
+
+          if (sorted[mid].amountUsd < target) {
+            left = mid + 1;
+          } else {
+            right = mid - 1;
+          }
+        }
+
+        renderResult({
+          tag: "BUSQUEDA",
+          subtitle: "Busqueda binaria sobre lista previamente ordenada.",
+          data: { sorted, targetAmount: target, foundIndex: found },
+          metricItems: [
+            { label: "Objetivo", value: `$${target}` },
+            { label: "Indice encontrado", value: found },
+            { label: "Items evaluados", value: sorted.length },
+            { label: "Estado", value: found >= 0 ? "Encontrado" : "No encontrado" },
+          ],
+          tableRows: sorted,
+        });
+      });
+
+      document.getElementById("reportBtn").addEventListener("click", () => {
+        const total = appointments.length;
+        const attended = appointments.filter((item) => item.attended).length;
+        const noShow = total - attended;
+        const noShowRate = total === 0 ? 0 : noShow / total;
+        const averageRisk = appointments.reduce((sum, item) => sum + item.noShowRiskScore, 0) / total;
+        const byCountry = appointments.reduce((acc, item) => {
+          const current = acc[item.country] ?? 0;
+          acc[item.country] = current + 1;
+          return acc;
+        }, {});
+
+        const report = {
+          totalAppointments: total,
+          noShowAppointments: noShow,
+          noShowRate,
+          averageNoShowRiskScore: averageRisk,
+          appointmentsByCountry: byCountry,
+        };
+
+        renderResult({
+          tag: "REPORTE",
+          subtitle: "Resumen de asistencia y riesgo de no-show.",
+          data: report,
+          metricItems: [
+            { label: "Citas", value: total },
+            { label: "No-show", value: noShow },
+            { label: "Tasa no-show", value: `${(noShowRate * 100).toFixed(1)}%` },
+            { label: "Riesgo promedio", value: averageRisk.toFixed(2) },
+          ],
+          tableRows: Object.entries(byCountry).map(([country, count]) => ({ country, appointments: count })),
+        });
+      });
+
+      renderResult({
+        tag: "LISTO",
+        subtitle: "Pulsa un bloque de accion para correr una operacion.",
+        data: { message: "Haz clic en cualquier boton para probar las funciones." },
+        metricItems: [
+          { label: "Operaciones", value: 4 },
+          { label: "Citas demo", value: appointments.length },
+          { label: "Claims demo", value: claims.length },
+          { label: "Idioma", value: "ES" },
+        ],
+        tableRows: [],
+      });
+    </script>
+  </body>
+</html>
